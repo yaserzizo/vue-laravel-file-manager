@@ -7,8 +7,8 @@
             </button>
         </div>
         <div class="modal-body">
-            <div class="row">
-                <div class="col-2">{{ lang.modal.properties.disk }}:</div>
+            <div v-if="this.shown" class="row">
+                <div  class="col-2">{{ lang.modal.properties.disk }}:</div>
                 <div class="col-9">{{ selectedDisk }}</div>
                 <div class="col-1 text-right">
                     <i v-on:click="copyToClipboard(selectedDisk)"
@@ -25,7 +25,7 @@
                        class="far fa-copy"></i>
                 </div>
             </div>
-            <div class="row">
+            <div v-if="this.shown" class="row">
                 <div class="col-2">{{ lang.modal.properties.path }}:</div>
                 <div class="col-9">{{ selectedItem.path }}</div>
                 <div class="col-1 text-right">
@@ -44,7 +44,7 @@
                            class="far fa-copy"></i>
                     </div>
                 </div>
-                <div class="row">
+                <div v-if="this.shown" class="row">
                     <div class="col-2">{{ lang.modal.properties.url }}:</div>
                     <div class="col-9">
                         <span v-if="url">{{ url }}</span>
@@ -95,6 +95,7 @@ export default {
   data() {
     return {
       url: null,
+      shown: false,
     };
   },
   computed: {
