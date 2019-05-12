@@ -21,8 +21,8 @@
                         <i class="fas fa-sync-alt"></i>
                     </button>
                 </div>
-                <div v-if="this.shown" class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary"
+                <div  class="btn-group" role="group">
+                    <button v-if="this.shown" type="button" class="btn btn-secondary"
                             v-on:click="showModal('NewFile')"
                             v-bind:title="lang.btn.file">
                         <i class="far fa-file"></i>
