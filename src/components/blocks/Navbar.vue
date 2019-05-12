@@ -3,13 +3,13 @@
         <div class="row justify-content-between">
             <div class="col-auto">
                 <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary"
+                    <button v-if="this.shown" type="button" class="btn btn-secondary"
                             v-bind:disabled="backDisabled"
                             v-bind:title="lang.btn.back"
                             v-on:click="historyBack()">
                         <i class="fas fa-step-backward"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary"
+                    <button v-if="this.shown" type="button" class="btn btn-secondary"
                             v-bind:disabled="forwardDisabled"
                             v-bind:title="lang.btn.forward"
                             v-on:click="historyForward()">
@@ -21,13 +21,13 @@
                         <i class="fas fa-sync-alt"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
+                <div v-if="this.shown" class="btn-group" role="group">
                     <button type="button" class="btn btn-secondary"
                             v-on:click="showModal('NewFile')"
                             v-bind:title="lang.btn.file">
                         <i class="far fa-file"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary"
+                    <button v-if="this.shown" type="button" class="btn btn-secondary"
                             v-on:click="showModal('NewFolder')"
                             v-bind:title="lang.btn.folder">
                         <i class="far fa-folder"></i>
@@ -51,8 +51,8 @@
                         <i class="fas fa-trash-alt"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-secondary"
+                <div v-if="this.shown" class="btn-group" role="group">
+                    <button  type="button" class="btn btn-secondary"
                             v-bind:disabled="!isAnyItemSelected"
                             v-bind:title="lang.btn.copy"
                             v-on:click="toClipboard('copy')">
@@ -95,7 +95,7 @@
                         <i class="fas fa-expand-arrows-alt"></i>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
+                <div v-if="this.shown" class="btn-group" role="group">
                     <button type="button" class="btn btn-secondary"
                             v-bind:title="lang.btn.about"
                             v-on:click="showModal('About')">
@@ -113,6 +113,11 @@ import EventBus from './../../eventBus';
 
 export default {
   mixins: [translate],
+    data() {
+    return {
+      shown: false
+    }
+  },
   computed: {
     /**
      * Active manager name
