@@ -72,19 +72,19 @@ export default {
             icon: 'fas fa-download',
           },
         ], [
-          {
+         /* {
             name: 'copy',
             icon: 'far fa-copy',
           },
           {
             name: 'cut',
             icon: 'fas fa-cut',
-          },
+          },*/
           {
             name: 'rename',
             icon: 'far fa-edit',
           },
-          {
+         /* {
             name: 'paste',
             icon: 'far fa-clipboard',
           },
@@ -95,7 +95,7 @@ export default {
           {
             name: 'unzip',
             icon: 'far fa-file-archive',
-          },
+          },*/
         ], [
           {
             name: 'delete',
