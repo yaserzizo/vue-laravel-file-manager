@@ -35,7 +35,7 @@ export default {
       type: 'video',
       title: this.videoFile.filename,
       sources: [{
-        src: `${this.selectedDisk}`+`/`+`${this.videoFile.surl}`,
+        src: `${this.videoFile.surl}`,
         type: `audio/${this.videoFile.extension}`,
       }],
     };
