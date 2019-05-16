@@ -107,7 +107,7 @@ export default {
      * @returns {string}
      */
     downloadLink() {
-      return `${this.selectedDisk}`+`/`+ `${this.selectedItems[0].durl}`;
+      return `${this.selectedItems[0].durl}`;
     },
   },
 };
