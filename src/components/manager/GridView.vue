@@ -109,7 +109,8 @@ export default {
      * @returns {string}
      */
     createImgUrl(path, timestamp) {
-      return `${this.$store.getters['fm/settings/baseUrl']}thumbnails?disk=${this.disk}&path=${path}&v=${timestamp}`;
+     return `${this.disk}`+`/`+ path;
+     // return `${this.$store.getters['fm/settings/baseUrl']}thumbnails?disk=${this.disk}&path=${path}&v=${timestamp}`;
     },
   },
 };
