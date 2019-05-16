@@ -1,4 +1,5 @@
 <template>
+
     <div class="modal-content fm-modal-preview">
         <div class="modal-header">
             <h5 class="modal-title w-75 text-truncate">
@@ -10,7 +11,19 @@
             </button>
         </div>
         <div class="modal-body text-center">
-            <template v-if="showCropperModule">
+            <template v-if="selectedItem.extension == 'pdf'">
+                <div class="wrapper">
+                    <pdf
+                            v-for="i in numPages"
+                            :key="i"
+                            :src="src"
+                            :page="i"
+                            style="height: 100%"
+                    ></pdf>
+                </div>
+
+            </template>
+            <template v-else-if="showCropperModule">
                 <cropper-module v-bind:imgUrl="imgUrl"
                                 v-bind:maxHeight="maxHeight"
                                 v-on:closeCropper="closeCropper"></cropper-module>
@@ -40,20 +53,40 @@ import CropperModule from './../additions/Cropper.vue';
 import modal from './../mixins/modal';
 import translate from './../../../mixins/translate';
 import helper from './../../../mixins/helper';
+import pdf from 'vue-pdf'
 
 export default {
   name: 'Preview',
   mixins: [modal, translate, helper],
-  components: { CropperModule },
+  components: { CropperModule ,pdf},
   data() {
     return {
       showCropperModule: false,
       imgUrl: '',
+        numPages: undefined,
+        src:null,
+        srcItem:null,
+        currentPage: 0,
+        pageCount: 0
     };
   },
+mounted() {
+    if (this.srcItem) {
+
+        this.src= pdf.createLoadingTask(`${this.selectedDisk}`+`/`+this.srcItem.durl);
+        this.src.then(pdf => {
+
+            this.numPages = pdf.numPages;
+        });
+    }
+
+},
   created() {
     // Create image URL
-    this.setImgUrl();
+
+          this.setImgUrl();
+
+
   },
   computed: {
     /**
@@ -69,6 +102,7 @@ export default {
      * @returns {*}
      */
     selectedItem() {
+        this.srcItem = this.$store.getters['fm/selectedItems'][0];
       return this.$store.getters['fm/selectedItems'][0];
     },
 
@@ -106,7 +140,7 @@ export default {
      * Set image URL
      */
     setImgUrl() {
-      this.imgUrl = `${this.$store.getters['fm/settings/baseUrl']}preview?disk=${this.selectedDisk}&path=${encodeURIComponent(this.selectedItem.path)}&v=${this.selectedItem.timestamp}`;
+      this.imgUrl = `${this.selectedDisk}`+`/`+`${this.selectedItem.purl}`;
     },
 
     /**
@@ -121,6 +155,11 @@ export default {
 </script>
 
 <style lang="scss">
+    .wrapper{
+        overflow-y: auto;
+
+
+    }
     .fm-modal-preview {
 
         .modal-body {
