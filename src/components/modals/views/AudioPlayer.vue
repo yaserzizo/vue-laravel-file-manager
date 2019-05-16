@@ -128,7 +128,7 @@ export default {
         type: 'audio',
         title: this.audioFiles[index].filename,
         sources: [{
-          src: `${this.selectedDisk}`+`/`+`${this.videoFile.surl}`,
+          src: `${this.videoFile.surl}`,
           type: `audio/${this.audioFiles[index].extension}`,
         }],
       };
