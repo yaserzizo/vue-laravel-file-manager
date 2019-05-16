@@ -38,7 +38,7 @@
                     <template v-else-if="thisImage(file.extension)">
                         <img class="img-thumbnail"
                              v-bind:alt="file.filename"
-                             v-bind:src="createImgUrl(file.path, file.timestamp)">
+                             v-bind:src="createImgUrl(file.thurl, file.timestamp)">
                     </template>
                     <template v-else>
                         <i class="far fa-5x pb-2"
@@ -109,7 +109,7 @@ export default {
      * @returns {string}
      */
     createImgUrl(path, timestamp) {
-     return `${this.disk}`+`/`+ path;
+     return  path;
      // return `${this.$store.getters['fm/settings/baseUrl']}thumbnails?disk=${this.disk}&path=${path}&v=${timestamp}`;
     },
   },
