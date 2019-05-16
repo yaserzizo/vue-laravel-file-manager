@@ -73,7 +73,7 @@ export default {
 mounted() {
     if (this.srcItem) {
 
-        this.src= pdf.createLoadingTask(`${this.selectedDisk}`+`/`+this.srcItem.durl);
+        this.src= pdf.createLoadingTask(this.srcItem.durl);
         this.src.then(pdf => {
 
             this.numPages = pdf.numPages;
@@ -140,7 +140,7 @@ mounted() {
      * Set image URL
      */
     setImgUrl() {
-      this.imgUrl = `${this.selectedDisk}`+`/`+`${this.selectedItem.purl}`;
+      this.imgUrl = `${this.selectedItem.purl}`;
     },
 
     /**
