@@ -128,7 +128,7 @@ export default {
         type: 'audio',
         title: this.audioFiles[index].filename,
         sources: [{
-          src: `${this.$store.getters['fm/settings/baseUrl']}stream-file?disk=${this.selectedDisk}&path=${encodeURIComponent(this.audioFiles[index].path)}`,
+          src: `${this.selectedDisk}`+`/`+`${this.videoFile.surl}`,
           type: `audio/${this.audioFiles[index].extension}`,
         }],
       };
