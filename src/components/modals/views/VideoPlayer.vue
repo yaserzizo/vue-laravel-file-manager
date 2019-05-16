@@ -35,7 +35,7 @@ export default {
       type: 'video',
       title: this.videoFile.filename,
       sources: [{
-        src: `${this.$store.getters['fm/settings/baseUrl']}stream-file?disk=${this.selectedDisk}&path=${encodeURIComponent(this.videoFile.path)}`,
+        src: `${this.selectedDisk}`+`/`+`${this.videoFile.surl}`,
         type: `audio/${this.videoFile.extension}`,
       }],
     };
