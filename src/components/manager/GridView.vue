@@ -1,7 +1,7 @@
 <template>
     <div class="fm-grid">
         <div class="d-flex align-content-start flex-wrap">
-            <div v-if="!isRootPath" v-on:click="levelUp" class="fm-grid-item text-center" >
+            <div v-if="(wtype && !isRootPath)" v-on:click="levelUp" class="fm-grid-item text-center" >
                 <div class="fm-item-icon">
                     <i class="fas fa-level-up-alt fa-5x pb-2"></i>
                 </div>
@@ -70,6 +70,7 @@ export default {
   },
   props: {
     manager: { type: String, required: true },
+    wtype:false
   },
   mounted() {
     this.disk = this.selectedDisk;
