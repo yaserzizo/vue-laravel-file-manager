@@ -7,7 +7,7 @@
       <context-menu></context-menu>
       <modal v-if="showModal"></modal>
       <template v-if="windowsConfig === 1">
-        <left-manager class="col" manager="left"></left-manager>
+        <left-manager class="col" manager="left"  :wtype = "wtype" ></left-manager>
       </template>
       <template v-else-if="windowsConfig === 2">
         <folder-tree class="col-4 col-md-3"></folder-tree>
@@ -48,6 +48,7 @@ import Notification from './components/blocks/Notification.vue';
 
 export default {
   name: 'FileManager',
+  props: ['task_id','project_id','wtype'],
   components: {
     Navbar,
     FolderTree,
@@ -75,9 +76,12 @@ export default {
 
     // add axios response interceptor
     this.responseInterceptor();
+    let pt =[];
+    pt['project_id']= this.project_id;
+    pt['task_id']= this.task_id;
 
     // initialize app settings
-    this.$store.dispatch('fm/initializeApp');
+    this.$store.dispatch('fm/initializeApp',pt);
 
     /**
      * todo Keyboard event
