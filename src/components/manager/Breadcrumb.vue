@@ -78,6 +78,7 @@ export default {
      * Select main directory
      */
     selectMainDirectory() {
+        return;
       if (this.selectedDirectory) {
         this.$store.dispatch(`fm/${this.manager}/selectDirectory`, { path: null, history: true });
       }
