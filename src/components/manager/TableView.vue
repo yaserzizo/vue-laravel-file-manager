@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-if="!isRootPath">
+                <tr v-if="(wtype && !isRootPath)">
                     <td colspan="4" class="fm-content-item" v-on:click="levelUp">
                         <i class="fas fa-level-up-alt"></i>
                     </td>
@@ -98,6 +98,7 @@ export default {
   mixins: [translate, helper, managerHelper],
   props: {
     manager: { type: String, required: true },
+    wtype:false
   },
   computed: {
     /**
