@@ -1,9 +1,9 @@
 <template>
     <div class="fm-content d-flex flex-column">
-        <disk-list v-bind:manager="manager"></disk-list>
-        <breadcrumb v-bind:manager="manager"></breadcrumb>
+        <!--<disk-list v-bind:manager="manager"></disk-list>-->
+        <breadcrumb v-if="manager.wtype" v-bind:manager="manager"></breadcrumb>
         <div class="fm-content-body">
-            <table-view v-if="viewType === 'table'" v-bind:manager="manager"></table-view>
+            <table-view v-if="viewType === 'table'" v-bind:manager="manager" :wtype="wtype" ></table-view>
             <grid-view v-else v-bind:manager="manager"></grid-view>
         </div>
     </div>
@@ -26,6 +26,7 @@ export default {
   },
   props: {
     manager: { type: String, required: true },
+      wtype:false,
   },
   computed: {
     /**
