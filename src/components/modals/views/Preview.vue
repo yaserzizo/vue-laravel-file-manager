@@ -13,13 +13,21 @@
         <div class="modal-body text-center">
             <template v-if="selectedItem.extension == 'pdf'">
                 <div class="wrapper">
-                    <pdf
+                    <input v-model.number="page" type="number" style="width: 5em"> /{{numPages}}
+                    <button @click="rotate += 90">&#x27F3;</button>
+                    <button @click="rotate -= 90">&#x27F2;</button>
+                    <button @click="$refs.pdf.print()">print</button>
+                    <div style="width: 90%">
+                        <div v-if="loadedRatio > 0 && loadedRatio < 1" style="background-color: green; color: white; text-align: center" :style="{ width: loadedRatio * 100 + '%' }">{{ Math.floor(loadedRatio * 100) }}%</div>
+                        <pdf v-if="show" ref="pdf" style="border: 1px solid red" :src="src" :page="page" :rotate="rotate" @password="password" @progress="loadedRatio = $event" @error="error" @num-pages="numPages = $event" @link-clicked="page = $event"></pdf>
+                    </div>
+<!--                    <pdf
                             v-for="i in numPages"
                             :key="i"
                             :src="src"
                             :page="i"
                             style="height: 100%"
-                    ></pdf>
+                    ></pdf>-->
                 </div>
 
             </template>
@@ -61,6 +69,11 @@ export default {
   components: { CropperModule ,pdf},
   data() {
     return {
+        show:true,
+        loadedRatio: 0,
+        page: 1,
+        numPages: 0,
+        rotate: 0,
       showCropperModule: false,
       imgUrl: '',
         numPages: undefined,
@@ -150,6 +163,14 @@ mounted() {
       this.showCropperModule = false;
       this.setImgUrl();
     },
+      password: function(updatePassword, reason) {
+
+          updatePassword(prompt('password is "test"'));
+      },
+    error: function(err) {
+
+        console.log(err);
+    }
   },
 };
 </script>
@@ -157,6 +178,8 @@ mounted() {
 <style lang="scss">
     .wrapper{
         overflow-y: auto;
+        height: 100%;
+    /*    position:fixed;*/
 
 
     }
