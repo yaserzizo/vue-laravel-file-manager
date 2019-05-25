@@ -72,12 +72,17 @@ export default {
      */
     levelUp() {
       // if this a not root directory
+           // if this a not root directory
       if (this.selectedDirectory) {
         // calculate up directory path
-        const pathUp = this.selectedDirectory.split('/').slice(0, -1).join('/');
+        let test = this.selectedDirectory.split('/');
+        if (test.length > 1) {
+          const pathUp = this.selectedDirectory.split('/').slice(0, -1).join('/');
 
-        // load directory
-        this.$store.dispatch(`fm/${this.manager}/selectDirectory`, { path: pathUp || null, history: true });
+          // load directory
+          this.$store.dispatch(`fm/${this.manager}/selectDirectory`, { path: pathUp || null, history: true });
+        }
+
       }
     },
 
