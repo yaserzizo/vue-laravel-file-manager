@@ -140,6 +140,7 @@ export default {
         // download content for root path
         dispatch(`${manager}/selectDirectory`, { path: null, history: false });
       }
+      commit(`${manager}/resetHistory`);
     });
   },
 
