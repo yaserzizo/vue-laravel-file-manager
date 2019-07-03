@@ -61,6 +61,7 @@ const ar = {
       date: 'تأريخ',
       folder: 'مجلد',
       name: 'أسم',
+      creator: 'أضيف بواسطة',
       size: 'حجم',
       type: 'نوع',
     },
