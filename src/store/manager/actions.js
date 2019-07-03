@@ -128,6 +128,9 @@ export default {
       case 'name':
         commit('sortByName');
         break;
+      case 'creator':
+        commit('sortByCreator');
+        break;
       case 'size':
         commit('sortBySize');
         break;
