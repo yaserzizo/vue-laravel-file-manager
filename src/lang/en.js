@@ -61,6 +61,7 @@ const en = {
       date: 'Date',
       folder: 'Folder',
       name: 'Name',
+      creator: 'Add By',
       size: 'Size',
       type: 'Type',
     },
