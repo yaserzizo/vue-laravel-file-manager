@@ -12,6 +12,15 @@
                                v-show="sortSettings.direction === 'up'"></i>
                         </template>
                     </th>
+                    <th class="w-65" v-on:click="sortBy('creator')">
+                        {{ lang.manager.table.creator }}
+                        <template v-if="sortSettings.field === 'creator'">
+                            <i class="fas fa-sort-amount-down"
+                               v-show="sortSettings.direction === 'down'"></i>
+                            <i class="fas fa-sort-amount-up"
+                               v-show="sortSettings.direction === 'up'"></i>
+                        </template>
+                    </th>
                     <th class="w-10" v-on:click="sortBy('size')">
                         {{ lang.manager.table.size }}
                         <template v-if="sortSettings.field === 'size'">
@@ -58,6 +67,7 @@
                         <i class="far fa-folder"></i> {{ directory.basename }}
                     </td>
                     <td></td>
+                    <td></td>
                     <td>{{ lang.manager.table.folder }}</td>
                     <td>
                         {{ timestampToDate(directory.timestamp) }}
@@ -74,6 +84,10 @@
                         <i class="far"
                            v-bind:class="extensionToIcon(file.extension)"></i>
                         {{ file.filename ? file.filename : file.basename }}
+                    </td>
+                    <td class="fm-content-item unselectable"
+                        v-bind:class="(acl && file.acl === 0) ? 'text-hidden' : ''">
+                        {{ file.creator ? file.creator : '-' }}
                     </td>
                     <td>{{ bytesToHuman(file.size) }}</td>
                     <td>
