@@ -187,6 +187,15 @@ export default {
       state.files.sort((a, b) => b.basename.localeCompare(a.basename));
     }
   },
+  sortByCreator(state) {
+    state.directories.sort((a, b) => a.basename.localeCompare(b.basename));
+
+    if (state.sort.direction === 'up') {
+      state.files.sort((a, b) => a.creator.localeCompare(b.creator));
+    } else {
+      state.files.sort((a, b) => b.creator.localeCompare(a.creator));
+    }
+  },
 
   /**
    * Sort by file size
