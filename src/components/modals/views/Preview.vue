@@ -184,7 +184,7 @@ mounted() {
 
     }
     .fm-modal-preview {
-
+z-index: 9999;
         .modal-body {
             padding: 0;
 
