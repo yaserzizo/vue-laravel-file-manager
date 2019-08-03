@@ -27,6 +27,9 @@ export default {
      */
     EventBus.$on('addNotification', ({ status, message }) => this.addNotification(status, message));
   },
+    destroyed() {
+        EventBus.$off('addNotification');
+    },
   methods: {
     /**
      * Show new notification
