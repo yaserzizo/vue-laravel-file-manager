@@ -46,6 +46,10 @@ export default {
      */
     EventBus.$on('contextMenu', event => this.showMenu(event));
   },
+    destroyed() {
+      
+        EventBus.$off('contextMenu');
+    },
   computed: {
     /**
      * Context menu items
@@ -66,6 +70,7 @@ export default {
 
         // focus on menu
         this.$nextTick(() => {
+console.log(this.$refs.contextMenu)
           this.$refs.contextMenu.focus();
           // set menu params
           this.setMenu(event.pageY, event.pageX);
