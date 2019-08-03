@@ -1,5 +1,5 @@
 <template>
-        <div class="fm-notification">
+        <div v-bind:class="{ 'fm-notification': isActive}">
             <transition-group name="notify">
                 <div class="fm-notification-item" role="alert"
                      v-for="(notification, index) in notifications"
@@ -18,6 +18,7 @@ export default {
   name: 'notification',
   data() {
     return {
+        isActive:true,
       notifications: [],
     };
   },
@@ -25,9 +26,11 @@ export default {
     /**
      * Listen 'addNotification' events
      */
-    EventBus.$on('addNotification', ({ status, message }) => this.addNotification(status, message));
+    EventBus.$once('addNotification', ({ status, message }) => this.addNotification(status, message));
   },
-    destroyed() {
+    beforeDestroy() {
+      console.log('notifications destroyed22')
+        this.isActive=false;
         EventBus.$off('addNotification');
     },
   methods: {
