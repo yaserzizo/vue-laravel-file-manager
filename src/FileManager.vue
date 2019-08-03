@@ -1,7 +1,7 @@
 <template>
   <div class="fm d-flex flex-column"
        v-bind:class="{ 'fm-full-screen': fullScreen }">
-    <navbar></navbar>
+    <navbar :readonly="readonly"></navbar>
     <div class="fm-body">
       <notification></notification>
       <context-menu></context-menu>
@@ -48,7 +48,7 @@ import Notification from './components/blocks/Notification.vue';
 
 export default {
   name: 'FileManager',
-  props: ['task_id','project_id','wtype'],
+  props: ['task_id','project_id','wtype','readonly'],
   components: {
     Navbar,
     FolderTree,
