@@ -32,19 +32,19 @@
                             v-bind:title="lang.btn.folder">
                         <i class="far fa-folder"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary"
+                    <button   type="button" class="btn btn-secondary"
                             disabled
                             v-if="uploading"
                             v-bind:title="lang.btn.upload">
                         <i class="fas fa-upload"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary"
-                            v-else
+                    <button  type="button" class="btn btn-secondary"
+                            v-else-if="!readonly"
                             v-on:click="showModal('Upload')"
                             v-bind:title="lang.btn.upload">
                         <i class="fas fa-upload"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary"
+                    <button v-if="!readonly"  type="button" class="btn btn-secondary"
                             v-bind:disabled="!isAnyItemSelected"
                             v-on:click="showModal('Delete')"
                             v-bind:title="lang.btn.delete">
@@ -58,13 +58,13 @@
                             v-on:click="toClipboard('copy')">
                         <i class="fas fa-copy"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary"
+                    <button v-if="!readonly" type="button" class="btn btn-secondary"
                             v-bind:disabled="!isAnyItemSelected"
                             v-bind:title="lang.btn.cut"
                             v-on:click="toClipboard('cut')">
                         <i class="fas fa-cut"></i>
                     </button>
-                    <button type="button" class="btn btn-secondary"
+                    <button v-if="!readonly" type="button" class="btn btn-secondary"
                             v-bind:disabled="!clipboardType"
                             v-bind:title="lang.btn.paste"
                             v-on:click="paste">
@@ -113,6 +113,9 @@ import EventBus from './../../eventBus';
 
 export default {
   mixins: [translate],
+    props: {
+        readonly:false
+    },
     data() {
     return {
       shown: false
@@ -295,3 +298,4 @@ export default {
         }
     }
 </style>
+
